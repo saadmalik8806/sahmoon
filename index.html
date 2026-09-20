@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shamoon &amp; Asma - Wedding Invitation</title>
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Great+Vibes&family=Cinzel:wght@400;600;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="scroll-locked">
+    <!-- Background Music — plays automatically -->
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="assets/music/track1.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Volume Control Button (Top Right) -->
+    <button id="volumeBtn" class="volume-control" aria-label="Toggle sound">
+        <svg class="volume-icon-mute" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+        </svg>
+        <svg class="volume-icon-on" style="display: none;" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a7 7 0 0 1 0 9.9M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+    </button>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+
+        <!-- VIDEO 1: Intro/envelope animation — no content overlay -->
+        <video id="video1" class="hero-video" muted playsinline>
+            <source src="assets/vieo-1.mp4" type="video/mp4">
+        </video>
+
+        <!-- VIDEO 2: Wedding scene — content shows from start -->
+        <video id="video2" class="hero-video hero-video--hidden" muted playsinline loop>
+            <source src="assets/video-2.mp4" type="video/mp4">
+        </video>
+
+        <!-- Invisible tap overlay — captures first tap -->
+        <div id="tapOverlay" class="tap-overlay"></div>
+
+        <!-- Hero Text (shown from start of video-2) -->
+        <div id="heroTextContainer" class="hero-text-container">
+            <div class="hero-text-content">
+                <div class="hero-top-heart">&#10084;</div>
+                <p class="hero-subtitle">
+                    We are honored to welcome you to<br>the Wedding ceremony of:
+                </p>
+
+                <div class="hero-divider">
+                    <span class="h-line"></span>
+                    <span class="h-heart">&#10084;</span>
+                    <span class="h-line"></span>
+                </div>
+
+                <div class="hero-person">
+                    <h1 class="hero-name">Momin Mohammed Shamoon</h1>
+                    <p class="hero-details">Son of Ansari Raees Ahmed &amp; Aasiya Bano</p>
+                </div>
+
+                <div class="hero-ampersand">&amp;</div>
+
+                <div class="hero-person">
+                    <h1 class="hero-name">Asma Ansari</h1>
+                    <p class="hero-details">Daughter of Ishtiyaque Ahmed &amp; Saeeda Bano</p>
+                </div>
+
+                <div class="scroll-indicator">
+                    <span>SCROLL</span>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Welcome / Intro Text Section -->
+    <section id="welcome" class="welcome-section">
+        <div class="welcome-inner reveal-up">
+            <!-- Top divider -->
+            <div class="heart-divider">
+                <span class="divider-line"></span>
+                <span class="divider-heart" style="color: white; opacity: 0.8;">&#10084;</span>
+                <span class="divider-line"></span>
+            </div>
+
+            <p class="welcome-text-new">
+                We are honored to welcome you to the Wedding ceremony of Shamoon &amp; Asma.
+                As they begin their journey together in faith and love,
+                we thank you for being part of this blessed occasion &#10084;
+            </p>
+
+            <!-- Bottom divider -->
+            <div class="heart-divider">
+                <span class="divider-line"></span>
+                <span class="divider-heart" style="color: white; opacity: 0.8;">&#10084;</span>
+                <span class="divider-line"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scratch to Reveal Section -->
+    <section id="scratch" class="scratch-section">
+        <!-- SVG ClipPath Definition for heart shape -->
+        <svg class="heart-clip-svg" aria-hidden="true">
+            <defs>
+                <clipPath id="heartClip" clipPathUnits="objectBoundingBox">
+                    <path d="M0.5,0.25
+                        C0.5,0.25 0.1,-0.1 0.01,0.25
+                        C-0.05,0.45 0.1,0.7 0.5,1.0
+                        C0.9,0.7 1.05,0.45 0.99,0.25
+                        C0.9,-0.1 0.5,0.25 0.5,0.25 Z" />
+                </clipPath>
+            </defs>
+        </svg>
+
+        <!-- Confetti Container -->
+        <div id="confettiContainer" class="confetti-container"></div>
+
+        <div class="scratch-inner reveal-up">
+            <h2 id="scratchTitle" class="scratch-title">Scratch to Reveal</h2>
+
+            <!-- Title heart divider -->
+            <div class="heart-divider dark">
+                <span class="divider-line"></span>
+                <span class="divider-heart">&#9829;</span>
+                <span class="divider-line"></span>
+            </div>
+
+            <!-- Scratch Heart Wrapper -->
+            <div class="scratch-heart-wrapper">
+                <!-- Hidden content below canvas -->
+                <div class="heart-reveal-content" id="heartRevealContent">
+                    <p class="heart-greeting">You're Invited!</p>
+                    <p class="heart-date">September 30, 2026</p>
+                    <p class="heart-day">Wednesday</p>
+                    <p class="heart-time">10:00 AM</p>
+                </div>
+                <!-- Scratch Canvas -->
+                <canvas id="scratchCanvas" class="scratch-canvas"></canvas>
+            </div>
+
+            <!-- Save the Date Button -->
+            <button id="saveDateBtn" class="save-date-btn hidden-btn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                SAVE THE DATE
+            </button>
+        </div>
+    </section>
+
+    <!-- Image Gallery Slider Section -->
+    <section id="gallery" class="gallery-section">
+        <div class="gallery-inner reveal-up">
+            <div class="heart-divider">
+                <span class="divider-line"></span>
+                <span class="divider-heart">&#9829;</span>
+                <span class="divider-line"></span>
+            </div>
+
+            <div class="image-slider">
+                <div class="slider-track" id="sliderTrack">
+                    <img src="assets/images/slide-1.jpg" alt="Slide 1" class="slide-image">
+                    <img src="assets/images/slide-2.jpg" alt="Slide 2" class="slide-image">
+                    <img src="assets/images/slide-3.jpg" alt="Slide 3" class="slide-image">
+                    <img src="assets/images/slide-4.jpg" alt="Slide 4" class="slide-image">
+                </div>
+                <div class="slider-dots" id="sliderDots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section id="countdown" class="countdown-section">
+        <div class="countdown-content reveal-up">
+            <h2 class="countdown-title">Counting Down to Forever</h2>
+            <div class="countdown-timer">
+                <div class="countdown-item">
+                    <div class="countdown-number" id="days">0</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="hours">0</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="minutes">0</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-item">
+                    <div class="countdown-number" id="seconds">0</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Timeline Section -->
+    <section id="program" class="program-section">
+        <div class="program-content reveal-up" style="margin: 0 auto; max-width: 600px; width: 100%;">
+            <!-- Clock Icon -->
+            <div style="text-align: center; margin-bottom: 10px;">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#6e1f32" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+            </div>
+
+            <h2 class="program-title"
+                style="font-family: 'Great Vibes', cursive; font-size: 52px; color: #6e1f32; text-align: center; margin-bottom: 15px; font-weight: 400; text-transform: none;">
+                Program Timeline
+            </h2>
+
+            <div class="heart-divider" style="margin: 0 auto 50px; width: 180px;">
+                <span class="divider-line" style="background: rgba(110, 31, 50, 0.3);"></span>
+                <span class="divider-heart" style="color: #6e1f32;">&#9829;</span>
+                <span class="divider-line" style="background: rgba(110, 31, 50, 0.3);"></span>
+            </div>
+
+            <div class="timeline">
+                <!-- Nikah Event -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Nikah</h3>
+                        <div class="timeline-time">Rahmani Masjid, Nayapura • Aasar Baad</div>
+                        <div class="timeline-desc">
+                            <strong>Bride:</strong> Asma Ansari (D/O Ishtiyaque Ahmed & Saeeda Bano)<br>
+                            <strong>Groom:</strong> Momin Mohammed Shamoon (S/O Ansari Raees Ahmed & Aasiya Bano)
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Waleema Event -->
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Waleema</h3>
+                        <div class="timeline-time">November 23, 2026</div>
+                        <div class="timeline-desc">
+                            <strong>Venue:</strong> Nazeer Hall<br>
+                            Your gracious presence is requested to celebrate with us.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="venue-section">
+        <div class="venue-content reveal-up" style="max-width: 800px; width: 100%;">
+            <h2 class="venue-title">Location</h2>
+            <p class="venue-subtitle"
+                style="font-family: 'Great Vibes', cursive; font-size: 42px; margin-bottom: 20px;">Nazeer Hall</p>
+
+            <div class="map-container"
+                style="width: 100%; overflow: hidden; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 16px rgba(110, 31, 50, 0.1);">
+                <iframe
+                    src="https://maps.google.com/maps?q=Nazeer+Hall,+Malegaon,+Maharashtra&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <p class="venue-address" style="margin-top: 0; margin-bottom: 30px;">
+                Get directions to the venue to celebrate our big day with us.
+            </p>
+            <a href="https://maps.app.goo.gl/HiZsZsDuR7CF9JQc9" target="_blank" class="google-maps-btn"
+                style="text-decoration: none; display: inline-block;">
+                Get Directions
+            </a>
+        </div>
+    </section>
+
+    <!-- RSVP Form -->
+    <section id="rsvp" class="rsvp-section" style="background-color: transparent;">
+        <div class="rsvp-content reveal-up"
+            style="max-width: 600px; width: 100%; margin: 0 auto; text-align: center; padding: 0 20px;">
+            <!-- Envelope Icon -->
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#a42c40" stroke-width="1.5"
+                stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 5px;">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+
+            <h2
+                style="font-family: 'Great Vibes', cursive; font-size: 55px; color: #a42c40; margin: 0; font-weight: 400; line-height: 1;">
+                RSVP</h2>
+
+            <!-- Heart Divider -->
+            <div
+                style="display: flex; align-items: center; justify-content: center; gap: 15px; margin: 20px 0 45px; opacity: 0.6;">
+                <div style="height: 1px; width: 70px; background-color: #c08d9e;"></div>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#c08d9e">
+                    <path
+                        d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z">
+                    </path>
+                </svg>
+                <div style="height: 1px; width: 70px; background-color: #c08d9e;"></div>
+            </div>
+
+            <form id="rsvpForm" style="background: transparent; box-shadow: none; padding: 0; text-align: left;">
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label for="name"
+                        style="font-family: 'Cormorant Garamond', serif; font-size: 19px; color: #4a3b3e; text-transform: none; letter-spacing: normal; font-weight: 600; display: block; margin-bottom: 10px;">Your
+                        Name <span style="color: #e05e5e;">*</span></label>
+                    <input type="text" id="name" name="name" placeholder="Your full name" required
+                        style="width: 100%; box-sizing: border-box; background-color: #fdfafb; border: 1px solid #e5d8dc; padding: 16px 20px; border-radius: 8px; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #6b5358;">
+                </div>
+
+                <div class="form-group" style="margin-bottom: 25px;">
+                    <label for="attendance"
+                        style="display: flex; align-items: center; gap: 8px; font-family: 'Cormorant Garamond', serif; font-size: 19px; color: #4a3b3e; text-transform: none; letter-spacing: normal; font-weight: 600; margin-bottom: 10px;">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4a3b3e" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="9" cy="7" r="4"></circle>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                        </svg>
+                        Will you be attending? <span style="color: #e05e5e;">*</span>
+                    </label>
+                    <select id="attendance" name="attendance" required
+                        style="width: 100%; box-sizing: border-box; background-color: #fdfafb; border: 1px solid #e5d8dc; padding: 16px 20px; border-radius: 8px; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #6b5358; appearance: none; -webkit-appearance: none; background-image: url('data:image/svg+xml;utf8,<svg width=\'24\' height=\'24\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'%236b5358\' stroke-width=\'1.5\' stroke-linecap=\'round\' stroke-linejoin=\'round\' xmlns=\'http://www.w3.org/2000/svg\'><polyline points=\'6 9 12 15 18 9\'></polyline></svg>'); background-repeat: no-repeat; background-position: right 16px center;">
+                        <option value="">Select...</option>
+                        <option value="yes">Yes, I'll be there!</option>
+                        <option value="no">Sorry, I can't make it</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 35px;">
+                    <label for="message"
+                        style="font-family: 'Cormorant Garamond', serif; font-size: 19px; color: #4a3b3e; text-transform: none; letter-spacing: normal; font-weight: 600; display: block; margin-bottom: 10px;">Your
+                        Message</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Write your wishes..."
+                        style="width: 100%; box-sizing: border-box; background-color: #fdfafb; border: 1px solid #e5d8dc; padding: 16px 20px; border-radius: 8px; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #6b5358; resize: vertical;"></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn"
+                    style="width: 100%; background-color: #9d3153; color: white; padding: 18px; border-radius: 8px; font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 600; text-transform: none; border: none; letter-spacing: normal; box-shadow: 0 4px 12px rgba(157, 49, 83, 0.2); cursor: pointer; transition: 0.3s;">Send
+                    Message</button>
+            </form>
+            <p class="form-success hidden" id="formSuccess"
+                style="margin-top: 20px; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #4caf50;">
+                Thank you! Your RSVP has been received.</p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="reveal-up" style="background-color: #faedf1; padding: 50px 20px 40px; text-align: center; position: relative;">
+        <!-- Top Flourish -->
+        <div style="margin: 0 auto 30px; opacity: 0.7; display: flex; justify-content: center;">
+            <svg width="400" height="40" viewBox="0 0 400 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 10 20 Q 100 0 200 20 T 390 20" stroke="#c08d9e" stroke-width="1" fill="none" />
+                <path d="M 10 20 Q 100 40 200 20 T 390 20" stroke="#c08d9e" stroke-width="1" fill="none" />
+                <circle cx="80" cy="28" r="2" fill="#c08d9e" />
+                <circle cx="130" cy="6" r="2" fill="#c08d9e" />
+                <circle cx="180" cy="33" r="2" fill="#c08d9e" />
+                <circle cx="230" cy="7" r="2" fill="#c08d9e" />
+                <circle cx="280" cy="35" r="2" fill="#c08d9e" />
+                <circle cx="330" cy="8" r="2" fill="#c08d9e" />
+            </svg>
+        </div>
+
+        <h2
+            style="font-family: 'Great Vibes', cursive; font-size: clamp(34px, 6vw, 48px); color: #a42c40; margin-bottom: 20px; font-weight: 400;">
+            We can't wait to celebrate with you!
+        </h2>
+
+        <p
+            style="font-family: 'Cormorant Garamond', serif; font-size: 26px; color: #6b3e4b; font-style: italic; margin-bottom: 35px;">
+            Shamoon &amp; Asma
+        </p>
+
+        <!-- Bottom Flourish -->
+        <div style="margin: 0 auto 0; opacity: 0.7; display: flex; justify-content: center;">
+            <svg width="400" height="40" viewBox="0 0 400 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 10 20 Q 100 0 200 20 T 390 20" stroke="#c08d9e" stroke-width="1" fill="none" />
+                <path d="M 10 20 Q 100 40 200 20 T 390 20" stroke="#c08d9e" stroke-width="1" fill="none" />
+                <circle cx="80" cy="28" r="2" fill="#c08d9e" />
+                <circle cx="130" cy="6" r="2" fill="#c08d9e" />
+                <circle cx="180" cy="33" r="2" fill="#c08d9e" />
+                <circle cx="230" cy="7" r="2" fill="#c08d9e" />
+                <circle cx="280" cy="35" r="2" fill="#c08d9e" />
+                <circle cx="330" cy="8" r="2" fill="#c08d9e" />
+            </svg>
+        </div>
+        <!-- Divider Line -->
+        <div
+            style="width: 100vw; height: 1px; background: rgba(192, 141, 158, 0.3); margin-left: -20px; margin-top: 40px; margin-bottom: 25px;">
+        </div>
+
+        <!-- Bottom Bar -->
+        <div
+            style="display: flex; align-items: center; justify-content: space-between; max-width: 900px; margin: 0 auto; flex-wrap: wrap; gap: 20px;">
+
+
+
+            <!-- Center Names & Text -->
+            <div style="text-align: center; flex: 1; min-width: 200px;">
+                <h3
+                    style="font-family: 'Great Vibes', cursive; font-size: 26px; color: #a42c40; margin: 0; font-weight: 400;">
+                    Shamoon &amp; Asma
+                </h3>
+
+            </div>
+
+
+
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
