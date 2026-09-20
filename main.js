@@ -88,6 +88,16 @@ function openHero() {
 
   if (tapOverlay) tapOverlay.classList.add("hidden");
 
+  /* Request Fullscreen on first interaction */
+  const doc = document.documentElement;
+  if (doc.requestFullscreen) {
+    doc.requestFullscreen().catch(() => {});
+  } else if (doc.webkitRequestFullscreen) {
+    doc.webkitRequestFullscreen().catch(() => {});
+  } else if (doc.msRequestFullscreen) {
+    doc.msRequestFullscreen().catch(() => {});
+  }
+
   /* Play first intro video */
   if (video1) {
     video1.currentTime = 0;
@@ -112,7 +122,7 @@ function openHero() {
 /* Listen on entire hero section (tap or click anywhere) */
 if (heroSection) {
   heroSection.addEventListener("click",      openHero);
-  heroSection.addEventListener("touchstart", openHero, { passive: true });
+  heroSection.addEventListener("touchend",   openHero);
 }
 
 /* Apply scroll lock immediately when script runs */
